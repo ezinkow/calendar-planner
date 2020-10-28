@@ -4,8 +4,12 @@ var timeBlocks = document.querySelector(".container")
 var todoList = document.querySelector("#todo-list")
 var todos = [""]
 var timeSlots = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
-
-
+var save = document.querySelector("#save")
+var schedule = document.querySelector("#schedule")
+var time = document.querySelector("#time")
+// var dailySchedule = $("<div>");
+// var saveButton = $("<button>");
+// var todoInput = $("<input>");
 
 // display current day, date and year
 $("#currentDay").text(displayDate)
@@ -18,41 +22,43 @@ give user ability to enter event
 event saves in local storage so refreshing the page does not delete said event
 
 */
-function makeRows() {
 for (var i = 0; i < timeSlots.length; i++) {
     var dailySchedule = $("<div>");
+    var saveButton = $("<button>");
+    var todoInput = $("<input>");
     dailySchedule.addClass("row col-12 time-row")
     dailySchedule.attr("time-slots", timeSlots[i])
     dailySchedule.text(timeSlots[i])
-    $("#time").append(dailySchedule)
-}
-
-for (var i = 0; i < timeSlots.length; i++) {
-    var todoInput = $("<input>");
     todoInput.addClass("row col-12 future")
-    todoInput.attr("todos", i)
+    // todoInput.attr("todos", i)
     todoInput.text("")
-    $("#schedule").append(todoInput)
-}
-
-for (var i = 0; i < timeSlots.length; i++) {
-    var saveButton = $("<button>");
     saveButton.addClass("saveBtn row col-12")
-    saveButton.attr("saveBtn", i)
+    // saveButton.attr("saveBtn", i)
     saveButton.text("SAVE")
+    $("#schedule").append(todoInput)
     $("#save").append(saveButton)
-
-}
-}
-makeRows()
-
-    saveButton.addEventListener("click", function(event) {
+    $("#time").append(dailySchedule)
+    .addEventListener("click", function(event) {
         event.preventDefault();
-        var todoText = todoInput.value;
+        var todoText = saveButton.value;
         todos.push(todoText);
-        todoInput.value = "";
-        storeTodos()
-        });
+        console.log(todos[0])
+        schedule.value = "";
+        localStorage.setItem("todos", JSON.stringify(schedule));
+        })
+
+}
+
+
+
+    // save.addEventListener("click", function(event) {
+    //     event.preventDefault();
+    //     var todoText = schedule[0];
+    //     todos.push(todoText);
+    //     console.log(todos[0])
+    //     // schedule.value = "";
+    //     storeTodos()
+    //     });
     
         // console.log(todos)
         // console.log(localStorage)
@@ -66,7 +72,5 @@ makeRows()
     
 // }
 
-function storeTodos() {
-    localStorage.setItem("todos", JSON.stringify(todos));
-}
+
 
