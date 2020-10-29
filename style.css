@@ -64,6 +64,8 @@ textarea{
   background-color: #06AED5;
   color: white;
   display: block;
+  height: 80px;
+  width: 100px;
 }
 
 .saveBtn.hover {
@@ -72,6 +74,10 @@ textarea{
 }
 
 .time-row {
-  background-color: lightgray;
+  background-color: lightslategray;
   text-align: center;
+  border: solid thin black;
+  display: block;
+  padding: 30px;
+  color: white;
 }

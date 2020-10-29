@@ -1,9 +1,10 @@
 var displayDate = moment().format("MMMM Do, YYYY")
 const displayTime = moment().format("h:mm a")
+var milTime = moment().format("H")
 var timeBlocks = document.querySelector(".container")
 var todoList = document.querySelector("#todo-list")
 var todos = [""]
-var timeSlots = ["9", "10", "11", "12", "1", "2", "3", "4", "5"];
+// var timeSlots = ["9", "10", "11", "12", "1", "2", "3", "4", "5"];
 var save = document.querySelector("#save")
 var schedule = document.querySelector("#schedule")
 var time = document.querySelector("#time")
@@ -22,56 +23,69 @@ give user ability to enter event
 event saves in local storage so refreshing the page does not delete said event
 
 */
-for (var i = 0; i < timeSlots.length; i++) {
-    var timeCol = timeSlots[i]
+// for (var i = 0; i < timeSlots.length; i++) {
+//     // var timeCol = timeSlots[i]
     
-    // var dailySchedule = $("<div>");
-    // var todoInput = $("<input>");
-    // var saveButton = $("<button>");
-    // dailySchedule.addClass("row col-12 time-row")
-    // dailySchedule.attr("time-slots", timeSlots[i])
-    // dailySchedule.text(timeSlots[i])
-    // todoInput.addClass("row col-12")
-    // // todoInput.attr("todos", i)
-    // todoInput.text("")
-    // saveButton.addClass("saveBtn row col-12")
-    // // saveButton.attr("saveBtn", i)
-    // saveButton.text("SAVE")
-    // $("#time").append(dailySchedule)
-    // $("#schedule").append(todoInput)
-    // $("#save").append(saveButton)
-    }
+//     var dailySchedule = $("<div>");
+//     var todoInput = $("<input>");
+//     var saveButton = $("<button>");
+//     dailySchedule.addClass("row col-12 time-row")
+//     dailySchedule.attr("time-slots", timeSlots[i])
+//     dailySchedule.text(timeSlots[i])
+//     todoInput.addClass("row col-12")
+//     // todoInput.attr("todos", i)
+//     todoInput.text("")
+//     saveButton.addClass("saveBtn row col-12")
+//     // // saveButton.attr("saveBtn", i)
+//     saveButton.text("SAVE")
+//     $("#time").append(dailySchedule)
+//     $("#schedule").append(todoInput)
+//     $("#save").append(saveButton)
+//     }
 
+
+var saveBtn = document.querySelector(".saveBtn")
+var textInput = document.querySelector(".col-9")
+console.log(textInput.value)
+saveBtn.addEventListener("click",function(){
+    // textInput.value
+})
 
     // let btns = document.querySelectorAll('button');
 
     // for (i of btns) {
     //   i.addEventListener('click', function() {
     //     console.log(this);
+    //     todoText = todoInput.value;
+    //     todos.push(todoText);
+    //     console.log(todos)
+    //     console.log(todoTex)
     //   });
     // }
-    //   Btns.on("click",function(event) {
-        // event.preventDefault();
-        // var todoText = todoInput.value;
-        // todos.push(todoText);
-        // console.log(todos)
-        // console.log(todoText)
-        // schedule.value = "";
-        localStorage.setItem("todos", JSON.stringify(schedule));
-        })}
+    //   btns.on("click",function(event) {
+    //     event.preventDefault();
+    //     var todoText = todoInput.value;
+    //     todos.push(todoText);
+    //     console.log(todos)
+    //     console.log(todoText)
+    //     schedule.value = "";
+    //     localStorage.setItem("todos", JSON.stringify(schedule));
+    //     })
 
-var currentTime = new Date().getHours();
-console.log(currentTime)
-if (document.body) {
-    if (Number(timeSlots) < currentTime) {
-        $("#schedule").addClass(".future")
-    }
-        else if(Number(timeSlots) === currentTime) {
-            $("#schedule").addClass(".present")
+
+$(".timeSlot").each(function(){
+    var tableRowHour = $(this).attr("id")
+        if (tableRowHour > milTime) {
+            $("#text"+tableRowHour).addClass("future")
         }
-            else {$("#schedule").addClass(".past")}
-        
-    }
+            else if(tableRowHour === milTime) {
+                $("#text"+tableRowHour).addClass("present")
+            }
+                else {$("#text"+tableRowHour).addClass("past")}
+            
+        }
+)
+
 
 
     // save.addEventListener("click", function(event) {
