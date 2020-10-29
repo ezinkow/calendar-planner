@@ -1,5 +1,5 @@
 var displayDate = moment().format("MMMM Do, YYYY")
-const displayTime = moment().format("h:mm a")
+var displayTime = moment().format("h:mm a")
 var milTime = moment().format("H")
 var timeBlocks = document.querySelector(".container")
 var todoList = document.querySelector("#todo-list")
@@ -16,13 +16,14 @@ var time = document.querySelector("#time")
 $("#currentDay").text(displayDate)
 $("#currentTime").text(displayTime)
 
+localStorage.getItem("todos", JSON.stringify(todos))
+$("textarea").append(todos)
 
-/* create time blocks for business hours 9-5
-hours in the past display gray, current hour displays red, future hours display green
-give user ability to enter event
-event saves in local storage so refreshing the page does not delete said event
+// hours in the past display gray, current hour displays red, future hours display green
+// give user ability to enter event
+// event saves in local storage so refreshing the page does not delete said event
 
-*/
+
 // for (var i = 0; i < timeSlots.length; i++) {
 //     // var timeCol = timeSlots[i]
     
@@ -45,10 +46,13 @@ event saves in local storage so refreshing the page does not delete said event
 
 
 var saveBtn = document.querySelector(".saveBtn")
-var textInput = document.querySelector(".col-9")
+var textInput = document.querySelector("textarea")
+
 console.log(textInput.value)
-saveBtn.addEventListener("click",function(){
-    // textInput.value
+$("button").click(function(){
+    todos.push(textInput.value)
+    console.log(todos)
+    localStorage.setItem("todos", JSON.stringify(todos))
 })
 
     // let btns = document.querySelectorAll('button');
@@ -69,7 +73,7 @@ saveBtn.addEventListener("click",function(){
     //     console.log(todos)
     //     console.log(todoText)
     //     schedule.value = "";
-    //     localStorage.setItem("todos", JSON.stringify(schedule));
+        // localStorage.setItem("todos", JSON.stringify(schedule));
     //     })
 
 
