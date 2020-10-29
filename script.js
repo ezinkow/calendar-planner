@@ -4,7 +4,7 @@ var milTime = moment().format("H")
 var timeBlocks = document.querySelector(".container")
 var todoList = document.querySelector("#todo-list")
 var todos = [""]
-// var timeSlots = ["9", "10", "11", "12", "1", "2", "3", "4", "5"];
+var timeSlots = ["09", "10", "11", "12", "1", "2", "3", "4", "5"];
 var save = document.querySelector("#save")
 var schedule = document.querySelector("#schedule")
 var time = document.querySelector("#time")
@@ -46,14 +46,31 @@ $("textarea").append(todos)
 
 
 var saveBtn = document.querySelector(".saveBtn")
-var textInput = document.querySelector("textarea")
 
-console.log(textInput.value)
-$("button").click(function(){
-    todos.push(textInput.value)
-    console.log(todos)
-    localStorage.setItem("todos", JSON.stringify(todos))
-})
+
+
+// $("button").click(function(){
+//     todos.push(textInput.value)
+//     console.log(todos)
+//     localStorage.setItem("todos", JSON.stringify(todos))
+// })
+
+
+// $(".saveBtn").each(function(){
+//     var tableBtn = $(this).attr("id")
+//     $("#btn"+tableBtn).click(function(){
+//         console.log(todos)
+        // localStorage.setItem("todos", JSON.stringify(todos))
+// })})
+    
+for (var i = 0; i < timeSlots.length; i++) {
+    document.querySelectorAll('.saveBtn').forEach(saveBtn => {
+        saveBtn.addEventListener('click', event => {
+            var textInput = document.querySelector("#input"+timeSlots[i])
+            todos.push(textInput)
+            localStorage.setItem("todos", JSON.stringify(todos))
+            console.log(textInput)
+    })})}
 
     // let btns = document.querySelectorAll('button');
 
@@ -78,14 +95,14 @@ $("button").click(function(){
 
 
 $(".timeSlot").each(function(){
-    var tableRowHour = $(this).attr("id")
-        if (tableRowHour > milTime) {
-            $("#text"+tableRowHour).addClass("future")
+    var scheduleHour = $(this).attr("id")
+        if (scheduleHour > milTime) {
+            $("#text"+scheduleHour).addClass("future")
         }
-            else if(tableRowHour === milTime) {
-                $("#text"+tableRowHour).addClass("present")
+            else if(scheduleHour === milTime) {
+                $("#text"+scheduleHour).addClass("present")
             }
-                else {$("#text"+tableRowHour).addClass("past")}
+                else {$("#text"+scheduleHour).addClass("past")}
             
         }
 )
