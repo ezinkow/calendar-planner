@@ -1,110 +1,31 @@
-var displayDate = moment().format("MMMM Do, YYYY")
-var displayTime = moment().format("h:mm a")
+$(document).ready(function(){
+// var to get time
 var milTime = moment().format("H")
-var timeBlocks = document.querySelector(".container")
-var todoList = document.querySelector("#todo-list")
-var todos = [""]
-var timeSlots = ["09", "10", "11", "12", "1", "2", "3", "4", "5"];
-var save = document.querySelector("#save")
-var schedule = document.querySelector("#schedule")
-var time = document.querySelector("#time")
-// var dailySchedule = $("<div>");
-// var saveButton = $("<button>");
-// var todoInput = $("<input>");
 
-// display current day, date and year
-$("#currentDay").text(displayDate)
-$("#currentTime").text(displayTime)
+// add day and time to page
+$("#currentDay").text(moment().format("MMMM Do, YYYY"))
+$("#currentTime").text(moment().format("h:mm a"))
 
-localStorage.getItem("todos", JSON.stringify(todos))
-$("textarea").append(todos)
-
-// hours in the past display gray, current hour displays red, future hours display green
-// give user ability to enter event
-// event saves in local storage so refreshing the page does not delete said event
-
-var saveBtn = $(".saveBtn")
-    saveBtn.on("click",function(event) {
-        event.preventDefault()      
-
-for (var i = 0; i < timeSlots.length; i++) {
-        var input = $("#input" + timeSlots[i]).val()
-        saveBtn.attr("value",input)
-        todos.push(input)
-        console.log("for loop!")
-    }
+// save schedule item to local storage
+$(".saveBtn").on("click",function(){
+    var activity = $(this).siblings(".activity").val()
+    var time = $(this).parent().attr("id")
+    localStorage.setItem(time, activity)
 })
 
-
-//     // var timeCol = timeSlots[i]
-    
-//     var dailySchedule = $("<div>");
-//     var todoInput = $("<input>");
-//     var saveButton = $("<button>");
-//     dailySchedule.addClass("row col-12 time-row")
-//     dailySchedule.attr("time-slots", timeSlots[i])
-//     dailySchedule.text(timeSlots[i])
-//     todoInput.addClass("row col-12")
-//     // todoInput.attr("todos", i)
-//     todoInput.text("")
-//     saveButton.addClass("saveBtn row col-12")
-//     // // saveButton.attr("saveBtn", i)
-//     saveButton.text("SAVE")
-//     $("#time").append(dailySchedule)
-//     $("#schedule").append(todoInput)
-//     $("#save").append(saveButton)
-//     }
+// get schedule item from local storage and save it in the row
+$("#09 .activity").val(localStorage.getItem("09"))
+$("#10 .activity").val(localStorage.getItem("10"))
+$("#11 .activity").val(localStorage.getItem("11"))
+$("#12 .activity").val(localStorage.getItem("12"))
+$("#13 .activity").val(localStorage.getItem("13"))
+$("#14 .activity").val(localStorage.getItem("14"))
+$("#15 .activity").val(localStorage.getItem("15"))
+$("#16 .activity").val(localStorage.getItem("16"))
+$("#17 .activity").val(localStorage.getItem("17"))
 
 
-
-
-
-
-// $("button").click(function(){
-//     todos.push(textInput.value)
-//     console.log(todos)
-//     localStorage.setItem("todos", JSON.stringify(todos))
-// })
-
-
-// $(".saveBtn").each(function(){
-//     var tableBtn = $(this).attr("id")
-//     $("#btn"+tableBtn).click(function(){
-//         console.log(todos)
-        // localStorage.setItem("todos", JSON.stringify(todos))
-// })})
-    
-// for (var i = 0; i < timeSlots.length; i++) {
-//     document.querySelectorAll('.saveBtn').forEach(saveBtn => {
-//         saveBtn.addEventListener('click', event => {
-//             var textInput = document.querySelector("#input"+timeSlots[i])
-//             todos.push(textInput)
-//             localStorage.setItem("todos", JSON.stringify(todos))
-//             console.log(textInput)
-//     })})}
-
-    // let btns = document.querySelectorAll('button');
-
-    // for (i of btns) {
-    //   i.addEventListener('click', function() {
-    //     console.log(this);
-    //     todoText = todoInput.value;
-    //     todos.push(todoText);
-    //     console.log(todos)
-    //     console.log(todoTex)
-    //   });
-    // }
-    //   btns.on("click",function(event) {
-    //     event.preventDefault();
-    //     var todoText = todoInput.value;
-    //     todos.push(todoText);
-    //     console.log(todos)
-    //     console.log(todoText)
-    //     schedule.value = "";
-        // localStorage.setItem("todos", JSON.stringify(schedule));
-    //     })
-
-
+// color code rows
 $(".timeSlot").each(function(){
     var scheduleHour = $(this).attr("id")
         if (scheduleHour > milTime) {
@@ -115,31 +36,5 @@ $(".timeSlot").each(function(){
             }
                 else {$("#text"+scheduleHour).addClass("past")}
             
-        }
-)
-
-
-
-    // save.addEventListener("click", function(event) {
-    //     event.preventDefault();
-    //     var todoText = schedule[0];
-    //     todos.push(todoText);
-    //     console.log(todos[0])
-    //     // schedule.value = "";
-    //     storeTodos()
-    //     });
-    
-        // console.log(todos)
-        // console.log(localStorage)
-        // console.log(todoText)
-        
-    
-   
-
-
-// function renderTodos() {
-    
-// }
-
-
-
+        })
+})
