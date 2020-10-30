@@ -23,8 +23,19 @@ $("textarea").append(todos)
 // give user ability to enter event
 // event saves in local storage so refreshing the page does not delete said event
 
+var saveBtn = $(".saveBtn")
+    saveBtn.on("click",function(event) {
+        event.preventDefault()      
 
-// for (var i = 0; i < timeSlots.length; i++) {
+for (var i = 0; i < timeSlots.length; i++) {
+        var input = $("#input" + timeSlots[i]).val()
+        saveBtn.attr("value",input)
+        todos.push(input)
+        console.log("for loop!")
+    }
+})
+
+
 //     // var timeCol = timeSlots[i]
     
 //     var dailySchedule = $("<div>");
@@ -45,7 +56,7 @@ $("textarea").append(todos)
 //     }
 
 
-var saveBtn = document.querySelector(".saveBtn")
+
 
 
 
@@ -63,14 +74,14 @@ var saveBtn = document.querySelector(".saveBtn")
         // localStorage.setItem("todos", JSON.stringify(todos))
 // })})
     
-for (var i = 0; i < timeSlots.length; i++) {
-    document.querySelectorAll('.saveBtn').forEach(saveBtn => {
-        saveBtn.addEventListener('click', event => {
-            var textInput = document.querySelector("#input"+timeSlots[i])
-            todos.push(textInput)
-            localStorage.setItem("todos", JSON.stringify(todos))
-            console.log(textInput)
-    })})}
+// for (var i = 0; i < timeSlots.length; i++) {
+//     document.querySelectorAll('.saveBtn').forEach(saveBtn => {
+//         saveBtn.addEventListener('click', event => {
+//             var textInput = document.querySelector("#input"+timeSlots[i])
+//             todos.push(textInput)
+//             localStorage.setItem("todos", JSON.stringify(todos))
+//             console.log(textInput)
+//     })})}
 
     // let btns = document.querySelectorAll('button');
 
