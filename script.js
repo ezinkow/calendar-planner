@@ -8,8 +8,11 @@ $("#currentTime").text(moment().format("h:mm a"))
 
 // save schedule item to local storage
 $(".saveBtn").on("click",function(){
+    //by clicking save button, all buttons will get value of text in activity input field
     var activity = $(this).siblings(".activity").val()
+    //set time var to the id of the parent of each button, which is the time for that row
     var time = $(this).parent().attr("id")
+    //save to local storage, key is time, value is activity
     localStorage.setItem(time, activity)
 })
 
